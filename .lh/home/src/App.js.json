@@ -1,0 +1,18 @@
+{
+    "sourceFile": "home/src/App.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1753285904818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1753285904818,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\nimport Login from './pages/Login';\nimport Register from './pages/Register';\nimport { AuthProvider } from './contexts/AuthContext';\n\nfunction App() {\n  return (\n    <AuthProvider>\n      <Router>\n        <Routes>\n          <Route path=\"/login\" element={<Login />} />\n          <Route path=\"/register\" element={<Register />} />\n          <Route path=\"*\" element={<div>หน้าหลักหรือ dashboard ยังไม่ทำ</div>} />\n        </Routes>\n      </Router>\n    </AuthProvider>\n  );\n}\n\nexport default App;\n"
+        }
+    ]
+}

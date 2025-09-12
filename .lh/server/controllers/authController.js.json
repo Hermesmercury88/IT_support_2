@@ -1,0 +1,18 @@
+{
+    "sourceFile": "server/controllers/authController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1753284356732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1753284356732,
+            "name": "Commit-0",
+            "content": "const db = require('../config/db');\r\nconst bcrypt = require('bcryptjs');\r\nconst jwt = require('jsonwebtoken');\r\n\r\nexports.register = async (req, res) => {\r\n  const { username, password, name, role, department } = req.body;\r\n\r\n  try {\r\n    const [userCheck] = await db.query('SELECT * FROM users WHERE username = ?', [username]);\r\n    if (userCheck.length > 0) return res.status(400).json({ message: 'Username already exists' });\r\n\r\n    const hashedPassword = await bcrypt.hash(password, 10);\r\n    await db.query(\r\n      'INSERT INTO users (username, password, name, role, department) VALUES (?, ?, ?, ?, ?)',\r\n      [username, hashedPassword, name, role || 'user', department]\r\n    );\r\n    res.status(201).json({ message: 'Registered successfully' });\r\n  } catch (err) {\r\n    res.status(500).json({ message: 'Server error', error: err.message });\r\n  }\r\n};\r\n\r\nexports.login = async (req, res) => {\r\n  const { username, password } = req.body;\r\n\r\n  try {\r\n    const [rows] = await db.query('SELECT * FROM users WHERE username = ?', [username]);\r\n    if (rows.length === 0) return res.status(401).json({ message: 'Invalid username or password' });\r\n\r\n    const user = rows[0];\r\n    const match = await bcrypt.compare(password, user.password);\r\n    if (!match) return res.status(401).json({ message: 'Invalid username or password' });\r\n\r\n    const token = jwt.sign(\r\n      { id: user.id, role: user.role, name: user.name },\r\n      process.env.JWT_SECRET,\r\n      { expiresIn: '2h' }\r\n    );\r\n\r\n    res.json({ token, user: { id: user.id, name: user.name, role: user.role } });\r\n  } catch (err) {\r\n    res.status(500).json({ message: 'Server error', error: err.message });\r\n  }\r\n};\r\n"
+        }
+    ]
+}

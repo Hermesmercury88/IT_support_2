@@ -1,0 +1,38 @@
+{
+    "sourceFile": "controllers/brandController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1754937416003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1755052049446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,28 @@\n-const db = require('../config/db');\r\n+// controllers/brandController.js\r\n+const db = require('../db'); // ใช้การเชื่อมต่อ MySQL จากไฟล์ db.js ที่คุณมีอยู่แล้ว\r\n \r\n+// ดึงข้อมูล brand ทั้งหมด\r\n exports.getAllBrands = async (req, res) => {\r\n   try {\r\n-    const [rows] = await db.query('SELECT id, brand_name FROM device_brand ORDER BY brand_name ASC');\r\n+    const [rows] = await db.query('SELECT id, brand_name FROM device_brand ORDER BY id ASC');\r\n     res.json(rows);\r\n   } catch (error) {\r\n-    console.error(error);\r\n-    res.status(500).json({ message: 'เกิดข้อผิดพลาดจากเซิร์ฟเวอร์' });\r\n+    console.error('Error fetching brands:', error);\r\n+    res.status(500).json({ message: 'Server error' });\r\n   }\r\n };\r\n+\r\n+// เพิ่ม brand ใหม่\r\n+exports.addBrand = async (req, res) => {\r\n+  const { brand_name } = req.body;\r\n+  if (!brand_name) {\r\n+    return res.status(400).json({ message: 'กรุณากรอกชื่อแบรนด์' });\r\n+  }\r\n+  try {\r\n+    const [result] = await db.query('INSERT INTO device_brand (brand_name) VALUES (?)', [brand_name]);\r\n+    res.json({ id: result.insertId, brand_name });\r\n+  } catch (error) {\r\n+    console.error('Error adding brand:', error);\r\n+    res.status(500).json({ message: 'Server error' });\r\n+  }\r\n+};\r\n"
+                },
+                {
+                    "date": 1755053319882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,29 @@\n+// controllers/brandController.js\r\n+const db = require('../db'); // ตอนนี้จะหาเจอแล้ว\r\n+// ใช้การเชื่อมต่อ MySQL จากไฟล์ db.js ที่คุณมีอยู่แล้ว\r\n+\r\n+// ดึงข้อมูล brand ทั้งหมด\r\n+exports.getAllBrands = async (req, res) => {\r\n+  try {\r\n+    const [rows] = await db.query('SELECT id, brand_name FROM device_brand ORDER BY id ASC');\r\n+    res.json(rows);\r\n+  } catch (error) {\r\n+    console.error('Error fetching brands:', error);\r\n+    res.status(500).json({ message: 'Server error' });\r\n+  }\r\n+};\r\n+\r\n+// เพิ่ม brand ใหม่\r\n+exports.addBrand = async (req, res) => {\r\n+  const { brand_name } = req.body;\r\n+  if (!brand_name) {\r\n+    return res.status(400).json({ message: 'กรุณากรอกชื่อแบรนด์' });\r\n+  }\r\n+  try {\r\n+    const [result] = await db.query('INSERT INTO device_brand (brand_name) VALUES (?)', [brand_name]);\r\n+    res.json({ id: result.insertId, brand_name });\r\n+  } catch (error) {\r\n+    console.error('Error adding brand:', error);\r\n+    res.status(500).json({ message: 'Server error' });\r\n+  }\r\n+};\r\n"
+                },
+                {
+                    "date": 1755053326389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,32 +26,4 @@\n     console.error('Error adding brand:', error);\r\n     res.status(500).json({ message: 'Server error' });\r\n   }\r\n };\r\n-// controllers/brandController.js\r\n-const db = require('../db'); // ใช้การเชื่อมต่อ MySQL จากไฟล์ db.js ที่คุณมีอยู่แล้ว\r\n-\r\n-// ดึงข้อมูล brand ทั้งหมด\r\n-exports.getAllBrands = async (req, res) => {\r\n-  try {\r\n-    const [rows] = await db.query('SELECT id, brand_name FROM device_brand ORDER BY id ASC');\r\n-    res.json(rows);\r\n-  } catch (error) {\r\n-    console.error('Error fetching brands:', error);\r\n-    res.status(500).json({ message: 'Server error' });\r\n-  }\r\n-};\r\n-\r\n-// เพิ่ม brand ใหม่\r\n-exports.addBrand = async (req, res) => {\r\n-  const { brand_name } = req.body;\r\n-  if (!brand_name) {\r\n-    return res.status(400).json({ message: 'กรุณากรอกชื่อแบรนด์' });\r\n-  }\r\n-  try {\r\n-    const [result] = await db.query('INSERT INTO device_brand (brand_name) VALUES (?)', [brand_name]);\r\n-    res.json({ id: result.insertId, brand_name });\r\n-  } catch (error) {\r\n-    console.error('Error adding brand:', error);\r\n-    res.status(500).json({ message: 'Server error' });\r\n-  }\r\n-};\r\n"
+                },
+                {
+                    "date": 1755053423976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n // controllers/brandController.js\r\n-const db = require('../db'); // ตอนนี้จะหาเจอแล้ว\r\n-// ใช้การเชื่อมต่อ MySQL จากไฟล์ db.js ที่คุณมีอยู่แล้ว\r\n+const db = require('../db'); \r\n \r\n // ดึงข้อมูล brand ทั้งหมด\r\n exports.getAllBrands = async (req, res) => {\r\n   try {\r\n"
+                },
+                {
+                    "date": 1755053447026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n // controllers/brandController.js\r\n-const db = require('../db'); \r\n+const db = require('../config/db');\r\n \r\n // ดึงข้อมูล brand ทั้งหมด\r\n exports.getAllBrands = async (req, res) => {\r\n   try {\r\n"
+                }
+            ],
+            "date": 1754937416003,
+            "name": "Commit-0",
+            "content": "const db = require('../config/db');\r\n\r\nexports.getAllBrands = async (req, res) => {\r\n  try {\r\n    const [rows] = await db.query('SELECT id, brand_name FROM device_brand ORDER BY brand_name ASC');\r\n    res.json(rows);\r\n  } catch (error) {\r\n    console.error(error);\r\n    res.status(500).json({ message: 'เกิดข้อผิดพลาดจากเซิร์ฟเวอร์' });\r\n  }\r\n};\r\n"
+        }
+    ]
+}

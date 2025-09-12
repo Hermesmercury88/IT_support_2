@@ -1,0 +1,26 @@
+{
+    "sourceFile": "routes/deviceTypes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1754902086668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1755497887837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,7 @@\n router.post('/', deviceTypesController.createDeviceType);\r\n router.put('/:id', deviceTypesController.updateDeviceType);\r\n router.delete('/:id', deviceTypesController.deleteDeviceType);\r\n \r\n+router.post('/:id/upload-image', upload.single('image'), deviceController.uploadDeviceImage);\r\n+\r\n module.exports = router;\r\n"
+                },
+                {
+                    "date": 1755498300204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n router.post('/', deviceTypesController.createDeviceType);\r\n router.put('/:id', deviceTypesController.updateDeviceType);\r\n router.delete('/:id', deviceTypesController.deleteDeviceType);\r\n \r\n-router.post('/:id/upload-image', upload.single('image'), deviceController.uploadDeviceImage);\r\n \r\n+\r\n module.exports = router;\r\n"
+                }
+            ],
+            "date": 1754902086668,
+            "name": "Commit-0",
+            "content": "// routes/deviceTypes.js\r\nconst express = require('express');\r\nconst router = express.Router();\r\nconst deviceTypesController = require('../controllers/deviceTypesController');\r\n\r\nrouter.get('/', deviceTypesController.getAllDeviceTypes);\r\nrouter.get('/:id', deviceTypesController.getDeviceTypeById);\r\nrouter.post('/', deviceTypesController.createDeviceType);\r\nrouter.put('/:id', deviceTypesController.updateDeviceType);\r\nrouter.delete('/:id', deviceTypesController.deleteDeviceType);\r\n\r\nmodule.exports = router;\r\n"
+        }
+    ]
+}

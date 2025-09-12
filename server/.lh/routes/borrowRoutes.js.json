@@ -1,0 +1,34 @@
+{
+    "sourceFile": "routes/borrowRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1754446724374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754810531316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-const express = require('express');\r\n-const router = express.Router();\r\n-const borrowController = require('../controllers/borrowController');\r\n+// const express = require('express');\r\n+// const router = express.Router();\r\n+// const borrowController = require('../controllers/borrowController');\r\n \r\n-router.post('/', borrowController.requestBorrow);\r\n-router.get('/', borrowController.getAllBorrowRequests);\r\n-router.put('/:id/approve', borrowController.approveBorrow);\r\n-router.put('/:id/reject', borrowController.rejectBorrow);\r\n+// router.post('/', borrowController.requestBorrow);\r\n+// router.get('/', borrowController.getAllBorrowRequests);\r\n+// router.put('/:id/approve', borrowController.approveBorrow);\r\n+// router.put('/:id/reject', borrowController.rejectBorrow);\r\n \r\n-module.exports = router;\r\n+// module.exports = router;\r\n"
+                },
+                {
+                    "date": 1754813243041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,4 +7,14 @@\n // router.put('/:id/approve', borrowController.approveBorrow);\r\n // router.put('/:id/reject', borrowController.rejectBorrow);\r\n \r\n // module.exports = router;\r\n+\r\n+// routes/borrowRoutes.js\r\n+const express = require('express');\r\n+const router = express.Router();\r\n+const deviceController = require('../controllers/deviceController');\r\n+\r\n+// POST: ยืมอุปกรณ์\r\n+router.post('/', deviceController.borrowDevice);\r\n+\r\n+module.exports = router;\r\n"
+                },
+                {
+                    "date": 1754814457214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,13 @@\n // router.put('/:id/reject', borrowController.rejectBorrow);\r\n \r\n // module.exports = router;\r\n \r\n-// routes/borrowRoutes.js\r\n const express = require('express');\r\n const router = express.Router();\r\n const deviceController = require('../controllers/deviceController');\r\n \r\n // POST: ยืมอุปกรณ์\r\n router.post('/', deviceController.borrowDevice);\r\n+router.get(\"/history\", deviceController.getBorrowHistory);\r\n \r\n module.exports = router;\r\n"
+                },
+                {
+                    "date": 1754815256384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,9 @@\n // module.exports = router;\r\n \r\n const express = require('express');\r\n const router = express.Router();\r\n-const deviceController = require('../controllers/deviceController');\r\n+const borrowController = require('../controllers/borrowController');\r\n \r\n-// POST: ยืมอุปกรณ์\r\n-router.post('/', deviceController.borrowDevice);\r\n-router.get(\"/history\", deviceController.getBorrowHistory);\r\n+router.post('/borrow', borrowController.borrowDevice);\r\n \r\n module.exports = router;\r\n"
+                }
+            ],
+            "date": 1754446724374,
+            "name": "Commit-0",
+            "content": "const express = require('express');\r\nconst router = express.Router();\r\nconst borrowController = require('../controllers/borrowController');\r\n\r\nrouter.post('/', borrowController.requestBorrow);\r\nrouter.get('/', borrowController.getAllBorrowRequests);\r\nrouter.put('/:id/approve', borrowController.approveBorrow);\r\nrouter.put('/:id/reject', borrowController.rejectBorrow);\r\n\r\nmodule.exports = router;\r\n"
+        }
+    ]
+}

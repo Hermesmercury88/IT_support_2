@@ -1,0 +1,34 @@
+{
+    "sourceFile": "routes/returnRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1754810547970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754813321548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n+// routes/returnRoutes.js\r\n const express = require('express');\r\n const router = express.Router();\r\n const returnController = require('../controllers/returnController');\r\n \r\n-router.post('/', returnController.createReturnRequest);\r\n-router.get('/', returnController.getReturnRequests);\r\n-router.put('/:id', returnController.updateReturnStatus);\r\n+// POST: คืนอุปกรณ์\r\n+router.post('/', returnController.returnDevice);\r\n \r\n module.exports = router;\r\n+\r\n"
+                },
+                {
+                    "date": 1754815269161,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+const express = require('express');\r\n+const router = express.Router();\r\n+const returnController = require('../controllers/returnController');\r\n+\r\n+router.post('/return', returnController.returnDevice);\r\n+\r\n+module.exports = router;\r\n+\r\n"
+                },
+                {
+                    "date": 1755098430235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,8 @@\n const router = express.Router();\r\n const returnController = require('../controllers/returnController');\r\n \r\n router.post('/return', returnController.returnDevice);\r\n+router.post('/return-device', returnDevice);\r\n \r\n module.exports = router;\r\n \r\n-// routes/returnRoutes.js\r\n-const express = require('express');\r\n-const router = express.Router();\r\n-const returnController = require('../controllers/returnController');\r\n-\r\n-// POST: คืนอุปกรณ์\r\n-router.post('/', returnController.returnDevice);\r\n-\r\n-module.exports = router;\r\n-\r\n"
+                },
+                {
+                    "date": 1755098438877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,8 @@\n const router = express.Router();\r\n const returnController = require('../controllers/returnController');\r\n \r\n router.post('/return', returnController.returnDevice);\r\n-router.post('/return-device', returnDevice);\r\n \r\n+\r\n module.exports = router;\r\n \r\n"
+                }
+            ],
+            "date": 1754810547970,
+            "name": "Commit-0",
+            "content": "const express = require('express');\r\nconst router = express.Router();\r\nconst returnController = require('../controllers/returnController');\r\n\r\nrouter.post('/', returnController.createReturnRequest);\r\nrouter.get('/', returnController.getReturnRequests);\r\nrouter.put('/:id', returnController.updateReturnStatus);\r\n\r\nmodule.exports = router;\r\n"
+        }
+    ]
+}

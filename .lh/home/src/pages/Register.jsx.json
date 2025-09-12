@@ -1,0 +1,18 @@
+{
+    "sourceFile": "home/src/pages/Register.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1753285888117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1753285888117,
+            "name": "Commit-0",
+            "content": "import React, { useState } from 'react';\r\nimport axios from 'axios';\r\nimport { useNavigate } from 'react-router-dom';\r\n\r\nconst Register = () => {\r\n  const navigate = useNavigate();\r\n\r\n  const [form, setForm] = useState({\r\n    username: '',\r\n    password: '',\r\n    name: '',\r\n    department: '',\r\n    role: 'user',\r\n  });\r\n\r\n  const [error, setError] = useState('');\r\n  const [success, setSuccess] = useState('');\r\n\r\n  const handleChange = (e) => {\r\n    setForm({ ...form, [e.target.name]: e.target.value });\r\n  };\r\n\r\n  const handleSubmit = async (e) => {\r\n    e.preventDefault();\r\n    try {\r\n      await axios.post('http://localhost:4000/api/auth/register', form);\r\n      setSuccess('ลงทะเบียนสำเร็จ! ไปหน้า Login...');\r\n      setTimeout(() => navigate('/login'), 1500);\r\n    } catch (err) {\r\n      setError(err.response?.data?.message || 'เกิดข้อผิดพลาด');\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div className=\"register-page\">\r\n      <div className=\"register-box\">\r\n        <div className=\"card card-outline card-primary\">\r\n          <div className=\"card-header text-center\"><b>IT Inventory</b> Register</div>\r\n          <div className=\"card-body\">\r\n            <form onSubmit={handleSubmit}>\r\n              <div className=\"input-group mb-2\">\r\n                <input name=\"username\" onChange={handleChange} value={form.username} className=\"form-control\" placeholder=\"Username\" required />\r\n              </div>\r\n              <div className=\"input-group mb-2\">\r\n                <input type=\"password\" name=\"password\" onChange={handleChange} value={form.password} className=\"form-control\" placeholder=\"Password\" required />\r\n              </div>\r\n              <div className=\"input-group mb-2\">\r\n                <input name=\"name\" onChange={handleChange} value={form.name} className=\"form-control\" placeholder=\"ชื่อ-นามสกุล\" />\r\n              </div>\r\n              <div className=\"input-group mb-2\">\r\n                <input name=\"department\" onChange={handleChange} value={form.department} className=\"form-control\" placeholder=\"แผนก\" />\r\n              </div>\r\n              <div className=\"input-group mb-2\">\r\n                <select name=\"role\" value={form.role} onChange={handleChange} className=\"form-control\">\r\n                  <option value=\"user\">User</option>\r\n                  <option value=\"admin\">Admin</option>\r\n                </select>\r\n              </div>\r\n\r\n              {error && <div className=\"alert alert-danger py-1\">{error}</div>}\r\n              {success && <div className=\"alert alert-success py-1\">{success}</div>}\r\n\r\n              <button type=\"submit\" className=\"btn btn-primary btn-block\">ลงทะเบียน</button>\r\n            </form>\r\n\r\n            <p className=\"mt-2 text-center\">\r\n              <a href=\"/login\">← กลับสู่หน้า Login</a>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Register;\r\n"
+        }
+    ]
+}

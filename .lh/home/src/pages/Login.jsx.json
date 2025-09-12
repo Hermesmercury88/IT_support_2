@@ -1,0 +1,18 @@
+{
+    "sourceFile": "home/src/pages/Login.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1753285834300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1753285834300,
+            "name": "Commit-0",
+            "content": "import React, { useState } from 'react';\r\nimport axios from 'axios';\r\nimport { useAuth } from '../contexts/AuthContext';\r\nimport { useNavigate } from 'react-router-dom';\r\n\r\nconst Login = () => {\r\n  const { login } = useAuth();\r\n  const navigate = useNavigate();\r\n\r\n  const [form, setForm] = useState({ username: '', password: '' });\r\n  const [error, setError] = useState('');\r\n\r\n  const handleChange = e => {\r\n    setForm({ ...form, [e.target.name]: e.target.value });\r\n  };\r\n\r\n  const handleSubmit = async e => {\r\n    e.preventDefault();\r\n    try {\r\n      const res = await axios.post('http://localhost:4000/api/auth/login', form);\r\n      login(res.data);\r\n      navigate('/dashboard');\r\n    } catch (err) {\r\n      setError(err.response?.data?.message || 'Login failed');\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div className=\"login-page\">\r\n      <div className=\"login-box\">\r\n        <div className=\"card card-outline card-primary\">\r\n          <div className=\"card-header text-center\"><b>IT Inventory</b> Login</div>\r\n          <div className=\"card-body\">\r\n            <form onSubmit={handleSubmit}>\r\n              <div className=\"input-group mb-3\">\r\n                <input name=\"username\" value={form.username} onChange={handleChange} className=\"form-control\" placeholder=\"Username\" />\r\n              </div>\r\n              <div className=\"input-group mb-3\">\r\n                <input name=\"password\" type=\"password\" value={form.password} onChange={handleChange} className=\"form-control\" placeholder=\"Password\" />\r\n              </div>\r\n              {error && <div className=\"alert alert-danger py-1\">{error}</div>}\r\n              <button type=\"submit\" className=\"btn btn-primary btn-block\">Login</button>\r\n            </form>\r\n            <p className=\"mb-0 mt-3 text-center\">\r\n              <a href=\"/register\">Register</a>\r\n            </p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Login;\r\n"
+        }
+    ]
+}

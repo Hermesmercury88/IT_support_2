@@ -1,0 +1,22 @@
+{
+    "sourceFile": "routes/imageRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1755491986903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1755495246681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n-const express = require(\"express\");\r\n+const express = require('express');\r\n const router = express.Router();\r\n-const { upload, uploadImage } = require(\"../controllers/ImageUpload\");\r\n+const upload = require('../controllers/ImageUpload');\r\n \r\n-// POST /api/upload\r\n-router.post(\"/\", upload.single(\"image\"), uploadImage);\r\n+// route สำหรับอัพโหลดรูปภาพแยก\r\n+router.post('/upload', upload.single('image'), (req, res) => {\r\n+  if (!req.file) return res.status(400).json({ message: 'ไม่มีไฟล์อัพโหลด' });\r\n+  res.json({ message: 'อัพโหลดสำเร็จ', path: `/uploads/${req.file.filename}` });\r\n+});\r\n \r\n module.exports = router;\r\n"
+                }
+            ],
+            "date": 1755491986903,
+            "name": "Commit-0",
+            "content": "const express = require(\"express\");\r\nconst router = express.Router();\r\nconst { upload, uploadImage } = require(\"../controllers/ImageUpload\");\r\n\r\n// POST /api/upload\r\nrouter.post(\"/\", upload.single(\"image\"), uploadImage);\r\n\r\nmodule.exports = router;\r\n"
+        }
+    ]
+}

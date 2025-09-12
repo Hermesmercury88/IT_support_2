@@ -1,0 +1,22 @@
+{
+    "sourceFile": "routes/brandRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1754937425720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1755052060826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,12 @@\n+// routes/brandRoutes.js\r\n const express = require('express');\r\n const router = express.Router();\r\n const brandController = require('../controllers/brandController');\r\n \r\n+// ดึงแบรนด์ทั้งหมด\r\n router.get('/', brandController.getAllBrands);\r\n \r\n+// เพิ่มแบรนด์ใหม่\r\n+router.post('/', brandController.addBrand);\r\n+\r\n module.exports = router;\r\n"
+                }
+            ],
+            "date": 1754937425720,
+            "name": "Commit-0",
+            "content": "const express = require('express');\r\nconst router = express.Router();\r\nconst brandController = require('../controllers/brandController');\r\n\r\nrouter.get('/', brandController.getAllBrands);\r\n\r\nmodule.exports = router;\r\n"
+        }
+    ]
+}

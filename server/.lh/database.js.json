@@ -1,0 +1,54 @@
+{
+    "sourceFile": "database.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1753328586847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1753328593346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const mysql = require('mysql2');\r\n \r\n const pool = mysql.createPool({\r\n-host: '172.16.1.11',\r\n+host: '',\r\n user: 'boat',\r\n database: 'survey_com',\r\n password: '784512'\r\n });\r\n"
+                },
+                {
+                    "date": 1753328610381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const mysql = require('mysql2');\r\n \r\n const pool = mysql.createPool({\r\n-host: '',\r\n+host: 'http://localhost/',\r\n user: 'boat',\r\n database: 'survey_com',\r\n password: '784512'\r\n });\r\n"
+                },
+                {
+                    "date": 1753328617928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const mysql = require('mysql2');\r\n \r\n const pool = mysql.createPool({\r\n-host: 'http://localhost/',\r\n+host: 'localhost/',\r\n user: 'boat',\r\n database: 'survey_com',\r\n password: '784512'\r\n });\r\n"
+                },
+                {
+                    "date": 1753328624932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const mysql = require('mysql2');\r\n \r\n const pool = mysql.createPool({\r\n-host: 'localhost/',\r\n-user: 'boat',\r\n+host: 'localhost',\r\n+user: 'root',\r\n database: 'survey_com',\r\n password: '784512'\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1753328635924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n \r\n const pool = mysql.createPool({\r\n host: 'localhost',\r\n user: 'root',\r\n-database: 'survey_com',\r\n-password: '784512'\r\n+database: '',\r\n+password: ''\r\n });\r\n \r\n \r\n module.exports = pool.promise();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1753328646844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n const pool = mysql.createPool({\r\n host: 'localhost',\r\n user: 'root',\r\n-database: '',\r\n+database: 'it_com',\r\n password: ''\r\n });\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1753345417078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,14 @@\n-const mysql = require('mysql2');\r\n+const mysql = require('mysql2/promise');\r\n+require('dotenv').config();\r\n \r\n const pool = mysql.createPool({\r\n-host: 'localhost',\r\n-user: 'root',\r\n-database: 'it_com',\r\n-password: ''\r\n+  host: process.env.DB_HOST || 'localhost',\r\n+  user: process.env.DB_USER || 'root',\r\n\\ No newline at end of file\n+  password: process.env.DB_PASSWORD || '',\r\n+  database: process.env.DB_NAME || 'your_db_name',\r\n+  waitForConnections: true,\r\n+  connectionLimit: 10,\r\n+  queueLimit: 0,\r\n });\r\n \r\n-\r\n-module.exports = pool.promise();\n+module.exports = pool;\r\n"
+                },
+                {
+                    "date": 1753345423051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,11 @@\n const pool = mysql.createPool({\r\n   host: process.env.DB_HOST || 'localhost',\r\n   user: process.env.DB_USER || 'root',\r\n   password: process.env.DB_PASSWORD || '',\r\n-  database: process.env.DB_NAME || 'your_db_name',\r\n+  database: process.env.DB_NAME || 'ร',\r\n   waitForConnections: true,\r\n   connectionLimit: 10,\r\n   queueLimit: 0,\r\n });\r\n \r\n\\ No newline at end of file\n-module.exports = pool;\n+module.exports = pool;\r\n"
+                },
+                {
+                    "date": 1753345428395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,11 @@\n const pool = mysql.createPool({\r\n   host: process.env.DB_HOST || 'localhost',\r\n   user: process.env.DB_USER || 'root',\r\n   password: process.env.DB_PASSWORD || '',\r\n-  database: process.env.DB_NAME || 'ร',\r\n+  database: process.env.DB_NAME || 'it_com',\r\n   waitForConnections: true,\r\n   connectionLimit: 10,\r\n   queueLimit: 0,\r\n });\r\n \r\n\\ No newline at end of file\n-module.exports = pool;\n+module.exports = pool;\r\n"
+                }
+            ],
+            "date": 1753328586847,
+            "name": "Commit-0",
+            "content": "const mysql = require('mysql2');\r\n\r\nconst pool = mysql.createPool({\r\nhost: '172.16.1.11',\r\nuser: 'boat',\r\ndatabase: 'survey_com',\r\npassword: '784512'\r\n});\r\n\r\n\r\nmodule.exports = pool.promise();"
+        }
+    ]
+}

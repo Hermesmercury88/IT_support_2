@@ -1,0 +1,38 @@
+{
+    "sourceFile": "config/db.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1753412039017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1753412044914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const mysql = require('mysql2/promise');\r\n \r\n const pool = mysql.createPool({\r\n   host: 'localhost',\r\n-  user: 'your_mysql_user',\r\n+  user: '',\r\n   password: 'your_mysql_password',\r\n   database: 'your_database_name',\r\n   waitForConnections: true,\r\n   connectionLimit: 10,\r\n"
+                },
+                {
+                    "date": 1753412051754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n const mysql = require('mysql2/promise');\r\n \r\n const pool = mysql.createPool({\r\n   host: 'localhost',\r\n-  user: '',\r\n-  password: 'your_mysql_password',\r\n+  user: 'root',\r\n+  password: '',\r\n   database: 'your_database_name',\r\n   waitForConnections: true,\r\n   connectionLimit: 10,\r\n   queueLimit: 0\r\n"
+                },
+                {
+                    "date": 1753412058087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const pool = mysql.createPool({\r\n   host: 'localhost',\r\n   user: 'root',\r\n   password: '',\r\n-  database: 'your_database_name',\r\n+  database: 'it_',\r\n   waitForConnections: true,\r\n   connectionLimit: 10,\r\n   queueLimit: 0\r\n });\r\n"
+                },
+                {
+                    "date": 1754548607474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,13 @@\n const pool = mysql.createPool({\r\n   host: 'localhost',\r\n   user: 'root',\r\n   password: '',\r\n-  database: 'it_',\r\n+  database: 'it_com',\r\n   waitForConnections: true,\r\n   connectionLimit: 10,\r\n   queueLimit: 0\r\n+  charset: 'utf8mb4' \r\n });\r\n \r\n module.exports = pool;\r\n \r\n"
+                },
+                {
+                    "date": 1754548689119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   password: '',\r\n   database: 'it_com',\r\n   waitForConnections: true,\r\n   connectionLimit: 10,\r\n-  queueLimit: 0\r\n+  queueLimit: 0,\r\n   charset: 'utf8mb4' \r\n });\r\n \r\n module.exports = pool;\r\n"
+                }
+            ],
+            "date": 1753412039017,
+            "name": "Commit-0",
+            "content": "const mysql = require('mysql2/promise');\r\n\r\nconst pool = mysql.createPool({\r\n  host: 'localhost',\r\n  user: 'your_mysql_user',\r\n  password: 'your_mysql_password',\r\n  database: 'your_database_name',\r\n  waitForConnections: true,\r\n  connectionLimit: 10,\r\n  queueLimit: 0\r\n});\r\n\r\nmodule.exports = pool;\r\n\r\n"
+        }
+    ]
+}
