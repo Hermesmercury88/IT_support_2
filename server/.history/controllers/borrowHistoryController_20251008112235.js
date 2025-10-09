@@ -1,40 +1,24 @@
 // controllers/borrowHistoryController.js
 const pool = require('../config/db'); 
 
-// ดึงประวัติการยืม (รองรับกรองวัน/เดือน/ปี)
+// ดึงประวัติการยืม (รองรับกรองเดือน/ปี)
 const getBorrowHistoryWithDevice = async (req, res) => {
   try {
     const { day, month, year } = req.query;
-
     const params = [];
     const conditions = [];
 
-    // กรองวัน
-    if (day !== undefined && day !== "") {
-      const d = Number(day);
-      if (!isNaN(d)) {
-        conditions.push('DAY(bh.borrowed_at) = ?');
-        params.push(d);
-      }
+    if (day) {
+      conditions.push('DAY(bh.borrowed_at) = ?');
+      params.push(day);
     }
-
-    // กรองเดือน
-    if (month !== undefined && month !== "") {
-      const m = Number(month);
-      if (!isNaN(m)) {
-        conditions.push('MONTH(bh.borrowed_at) = ?');
-        params.push(m);
-      }
+    if (month) {
+      conditions.push('MONTH(bh.borrowed_at) = ?');
+      params.push(month);
     }
-
-    // กรองปี (รองรับ พ.ศ. → ค.ศ.)
-    if (year !== undefined && year !== "") {
-      let y = Number(year);
-      if (!isNaN(y)) {
-        if (y > 2500) y -= 543; // แปลงพุทธศักราชเป็นคริสต์ศักราช
-        conditions.push('YEAR(bh.borrowed_at) = ?');
-        params.push(y);
-      }
+    if (year) {
+      conditions.push('YEAR(bh.borrowed_at) = ?');
+      params.push(year);
     }
 
     const whereClause = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
@@ -74,7 +58,6 @@ const getAllBrands = async (req, res) => {
     const [brands] = await pool.query('SELECT * FROM device_brand');
     res.json(brands);
   } catch (err) {
-    console.error('Error in getAllBrands:', err);
     res.status(500).json({ message: 'ดึงข้อมูล brand ไม่สำเร็จ', error: err.message });
   }
 };
@@ -85,7 +68,6 @@ const getAllTypes = async (req, res) => {
     const [types] = await pool.query('SELECT * FROM device_types');
     res.json(types);
   } catch (err) {
-    console.error('Error in getAllTypes:', err);
     res.status(500).json({ message: 'ดึงข้อมูล type ไม่สำเร็จ', error: err.message });
   }
 };

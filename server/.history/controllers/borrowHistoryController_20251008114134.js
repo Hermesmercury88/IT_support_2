@@ -9,7 +9,7 @@ const getBorrowHistoryWithDevice = async (req, res) => {
     const params = [];
     const conditions = [];
 
-    // กรองวัน
+    // ตรวจสอบค่าและแปลงเป็น number เฉพาะเมื่อมีค่า
     if (day !== undefined && day !== "") {
       const d = Number(day);
       if (!isNaN(d)) {
@@ -18,7 +18,6 @@ const getBorrowHistoryWithDevice = async (req, res) => {
       }
     }
 
-    // กรองเดือน
     if (month !== undefined && month !== "") {
       const m = Number(month);
       if (!isNaN(m)) {
@@ -27,11 +26,9 @@ const getBorrowHistoryWithDevice = async (req, res) => {
       }
     }
 
-    // กรองปี (รองรับ พ.ศ. → ค.ศ.)
     if (year !== undefined && year !== "") {
-      let y = Number(year);
+      const y = Number(year);
       if (!isNaN(y)) {
-        if (y > 2500) y -= 543; // แปลงพุทธศักราชเป็นคริสต์ศักราช
         conditions.push('YEAR(bh.borrowed_at) = ?');
         params.push(y);
       }

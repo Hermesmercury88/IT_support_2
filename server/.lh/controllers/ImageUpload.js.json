@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1755491915264,
@@ -28,6 +28,18 @@
                 {
                     "date": 1755497793595,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n const multer = require('multer');\r\n const path = require('path');\r\n \r\n-// ตั้งค่า storage ของ multer\r\n const storage = multer.diskStorage({\r\n   destination: (req, file, cb) => {\r\n     cb(null, 'uploads/');\r\n   },\r\n@@ -10,8 +9,7 @@\n     cb(null, Date.now() + path.extname(file.originalname));\r\n   }\r\n });\r\n \r\n-// กำหนด multer\r\n const upload = multer({ storage });\r\n \r\n-module.exports = upload;\r\n+module.exports = upload; // ต้องแน่ใจว่า export ถูกต้อง\r\n"
+                },
+                {
+                    "date": 1759985093950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,15 @@\n-const multer = require('multer');\r\n-const path = require('path');\r\n+// const multer = require('multer');\r\n+// const path = require('path');\r\n \r\n-const storage = multer.diskStorage({\r\n-  destination: (req, file, cb) => {\r\n-    cb(null, 'uploads/');\r\n-  },\r\n-  filename: (req, file, cb) => {\r\n-    cb(null, Date.now() + path.extname(file.originalname));\r\n-  }\r\n-});\r\n+// const storage = multer.diskStorage({\r\n+//   destination: (req, file, cb) => {\r\n+//     cb(null, 'uploads/');\r\n+//   },\r\n+//   filename: (req, file, cb) => {\r\n+//     cb(null, Date.now() + path.extname(file.originalname));\r\n+//   }\r\n+// });\r\n \r\n-const upload = multer({ storage });\r\n+// const upload = multer({ storage });\r\n \r\n module.exports = upload; // ต้องแน่ใจว่า export ถูกต้อง\r\n"
+                },
+                {
+                    "date": 1759985112401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,5 @@\n // });\r\n \r\n // const upload = multer({ storage });\r\n \r\n-module.exports = upload; // ต้องแน่ใจว่า export ถูกต้อง\r\n+// module.exports = upload; \r\n"
+                },
+                {
+                    "date": 1759985480618,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,15 @@\n-// const multer = require('multer');\r\n-// const path = require('path');\r\n+const multer = require('multer');\r\n+const path = require('path');\r\n \r\n-// const storage = multer.diskStorage({\r\n-//   destination: (req, file, cb) => {\r\n-//     cb(null, 'uploads/');\r\n-//   },\r\n-//   filename: (req, file, cb) => {\r\n-//     cb(null, Date.now() + path.extname(file.originalname));\r\n-//   }\r\n-// });\r\n+const storage = multer.diskStorage({\r\n+  destination: (req, file, cb) => {\r\n+    cb(null, 'uploads/');\r\n+  },\r\n+  filename: (req, file, cb) => {\r\n+    cb(null, Date.now() + path.extname(file.originalname));\r\n+  }\r\n+});\r\n \r\n-// const upload = multer({ storage });\r\n+const upload = multer({ storage });\r\n \r\n-// module.exports = upload; \r\n+module.exports = upload; \r\n"
                 }
             ],
             "date": 1755491915264,
